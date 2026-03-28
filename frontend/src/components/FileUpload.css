@@ -1,0 +1,85 @@
+.file-upload {
+  width: 100%;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-label {
+  cursor: pointer;
+}
+
+.upload-box {
+  border: 2px dashed var(--color-primary);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  background-color: rgba(16, 185, 129, 0.05);
+  position: relative;
+}
+
+.upload-box:hover {
+  border-color: var(--color-primary-light);
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.upload-box svg {
+  margin-bottom: 0.75rem;
+  color: var(--color-primary-light);
+  transition: transform 0.3s ease;
+}
+
+.upload-box svg.loading {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.upload-text {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0.5rem 0;
+}
+
+.upload-hint {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.file-name {
+  color: var(--color-accent-light);
+  font-weight: 600;
+  margin: 0.5rem 0;
+  word-break: break-all;
+}
+
+.loading-text {
+  color: var(--color-primary-light);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.clear-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--color-danger);
+  color: #FFFFFF;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+  background-color: var(--color-danger-light);
+  transform: scale(1.1);
+}

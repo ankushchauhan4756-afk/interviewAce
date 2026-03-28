@@ -1,0 +1,239 @@
+.camera-recorder {
+  background: #0f172a;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  border: 1px solid #475569;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.camera-title {
+  color: #f1f5f9;
+  background: rgba(16, 185, 129, 0.15);
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-bottom: 1px solid #334155;
+}
+
+.video-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0b1220;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #475569;
+}
+
+.camera-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1); /* Mirror preview */
+}
+
+.error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.error-message p {
+  font-size: 1.1rem;
+  color: #ef4444;
+}
+
+.retry-btn {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.retry-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #7c8ff5 0%, #8359b5 100%);
+}
+
+.camera-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+.recording-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  animation: pulse 1s infinite;
+}
+
+.recording-dot {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+  }
+}
+
+.camera-controls {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #1e293b;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.control-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #334155 0%, #475569 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.control-btn.inactive-camera {
+  opacity: 0.75;
+  color: #d1d5db;
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+}
+
+.control-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+}
+
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.control-btn.disabled {
+  opacity: 0.6;
+}
+
+.record-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.record-btn:hover {
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, #1bbf8f 0%, #0f9460 100%);
+}
+
+.stop-btn {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+  animation: pulse-red 1s infinite;
+}
+
+.stop-btn:hover {
+  box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
+  background: linear-gradient(135deg, #f35a5a 0%, #e63434 100%);
+}
+
+@keyframes pulse-red {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+  }
+}
+
+.recording-info {
+  padding: 1rem;
+  background: #334155;
+  color: #e2e8f0;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid #475569;
+}
+
+@media (max-width: 768px) {
+  .video-container {
+    min-height: 300px;
+  }
+
+  .camera-controls {
+    gap: 0.5rem;
+  }
+
+  .control-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .control-btn span {
+    display: none;
+  }
+
+  .recording-indicator {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+  }
+}

@@ -1,0 +1,17 @@
+.next
+.vercel
+dist
+build
+node_modules
+.env
+.env.local
+.env.*.local
+.DS_Store
+*.pem
+.git
+.gitignore
+npm-debug.log
+yarn-error.log
+.turbo
+.vercel
+out

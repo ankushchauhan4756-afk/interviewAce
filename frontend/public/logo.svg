@@ -1,0 +1,15 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Brain -->
+  <circle cx="45" cy="40" r="15" fill="none" stroke="#2563EB" stroke-width="2"/>
+  <circle cx="50" cy="35" r="4" fill="#2563EB"/>
+  <circle cx="40" cy="35" r="4" fill="#2563EB"/>
+  <circle cx="50" cy="45" r="4" fill="#2563EB"/>
+  <circle cx="40" cy="45" r="4" fill="#2563EB"/>
+  <path d="M 45 55 Q 40 60 45 65 Q 50 60 45 55" fill="#2563EB"/>
+  
+  <!-- Checkmark -->
+  <g transform="translate(60, 55)">
+    <circle r="18" fill="none" stroke="#2563EB" stroke-width="2"/>
+    <path d="M -8 0 L -2 8 L 8 -4" fill="none" stroke="#2563EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
