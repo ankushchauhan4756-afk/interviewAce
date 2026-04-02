@@ -16,6 +16,7 @@ node_modules/
 .env.development.local
 .env.test.local
 .env.production.local
+.env.production
 
 # Logs
 npm-debug.log*
@@ -47,3 +48,5 @@ uploads/
 # Package manager
 yarn.lock
 package-lock.json
+.vercel
+.env*.local
