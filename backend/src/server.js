@@ -19,11 +19,11 @@ dotenv.config();
 // Initialize Express app
 const app = express();
 
-// Middleware - CORS Configuration for Vercel
+// Middleware - CORS Configuration for Production
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5000',
-  process.env.FRONTEND_URL || 'https://your-vercel-app.vercel.app',
+  process.env.FRONTEND_URL || 'https://interviewace.vercel.app',
   'https://interviewace.vercel.app'
 ];
 
