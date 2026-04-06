@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "AI-powered interview preparation platform backend",
   "type": "module",
+  "engines": {
+    "node": "18.x"
+  },
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
