@@ -8,9 +8,9 @@ services:
     startCommand: npm start
     envVars:
       - key: MONGODB_URI
-        value: REPLACE_WITH_YOUR_MONGODB_URI
+        value: mongodb+srv://arunthak56388_db_user:Ankush4756@cluster01.mjpepw2.mongodb.net/sample_mflix?appName=Cluster01
       - key: JWT_SECRET
-        value: REPLACE_WITH_A_STRONG_SECRET
+        value: InterviewAce2024SecretKey123!@
       - key: NODE_ENV
         value: production
       - key: FRONTEND_URL
