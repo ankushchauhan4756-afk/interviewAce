@@ -35,7 +35,7 @@ const QuestionsPage = () => {
       setLoading(true);
       const token = localStorage.getItem('token');
       const client = axios.create({
-        baseURL: 'http://localhost:5000/api',
+        baseURL: import.meta.env.VITE_API_BASE_URL || 'https://interviewace-1-5zo7.onrender.com/api',
         headers: { Authorization: `Bearer ${token}` },
       });
 

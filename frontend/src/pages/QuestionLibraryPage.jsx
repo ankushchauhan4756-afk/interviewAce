@@ -13,7 +13,7 @@ function QuestionLibraryPage() {
   const [statistics, setStatistics] = useState({});
 
   const api = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: import.meta.env.VITE_API_BASE_URL || 'https://interviewace-1-5zo7.onrender.com/api',
     headers: {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     }

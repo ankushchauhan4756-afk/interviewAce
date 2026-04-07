@@ -25,4 +25,4 @@ services:
     publishPath: dist
     envVars:
       - key: VITE_API_BASE_URL
-        value: https://interviewace-backend.onrender.com/api
+        value: https://interviewace-1-5zo7.onrender.com/api
