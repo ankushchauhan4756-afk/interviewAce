@@ -12,6 +12,7 @@ import resumeRoutes from './routes/resume.js';
 import interviewRoutes from './routes/interview.js';
 import violationRoutes from './routes/violations.js';
 import libraryRoutes from './routes/library.js';
+import adminRoutes from './routes/admin.js';
 
 // Load environment variables
 dotenv.config();
@@ -63,6 +64,7 @@ app.use('/api/resume', resumeRoutes);
 app.use('/api/interview', interviewRoutes);
 app.use('/api/violations', violationRoutes);
 app.use('/api/library', libraryRoutes);
+app.use('/api/admin', adminRoutes);
 
 // 404 handler
 app.use((req, res) => {
