@@ -240,3 +240,29 @@ export const extractKeyPoints = (answer) => {
     .map((text) => text.trim())
     .filter((text) => text.length > 10);
 };
+
+export const createLibrarySeedDocuments = () => {
+  const documents = [];
+
+  for (const [course, topics] of Object.entries(LIBRARY_SEED_DATA)) {
+    for (const [topic, questions] of Object.entries(topics)) {
+      questions.forEach((item, index) => {
+        const difficulties = ['Easy', 'Medium', 'Hard'];
+        const difficulty = difficulties[index % difficulties.length];
+        documents.push({
+          course,
+          topic,
+          question: item.q,
+          answer: item.a,
+          difficulty,
+          tags: [topic, course, difficulty.toLowerCase()],
+          isImportant: Math.random() < 0.25,
+          views: 0,
+          keyPoints: extractKeyPoints(item.a)
+        });
+      });
+    }
+  }
+
+  return documents;
+};

@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
+import LibraryQuestion from './models/LibraryQuestion.js';
+import { createLibrarySeedDocuments } from './utils/librarySeedData.js';
 
 // Load environment variables from the appropriate file
 const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env';
@@ -48,12 +50,25 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static files from uploads directory
 app.use('/uploads', express.static('uploads'));
 
-// Connect to MongoDB
-connectDB();
-
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ message: '✅ InterviewAce Backend is running!' });
+});
+
+const startApp = async () => {
+  await connectDB();
+
+  const libraryCount = await LibraryQuestion.countDocuments();
+  if (libraryCount === 0) {
+    const libraryDocs = createLibrarySeedDocuments();
+    await LibraryQuestion.insertMany(libraryDocs);
+    console.log(`✅ Seeded ${libraryDocs.length} library questions on first startup.`);
+  }
+};
+
+startApp().catch((error) => {
+  console.error('Startup error:', error);
+  process.exit(1);
 });
 
 // Routes
