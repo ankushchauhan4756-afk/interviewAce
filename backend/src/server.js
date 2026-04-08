@@ -3,6 +3,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 
+// Load environment variables from the appropriate file
+const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env';
+dotenv.config({ path: envFile });
+
 // Import routes
 import authRoutes from './routes/auth.js';
 import questionRoutes from './routes/questions.js';
@@ -13,9 +17,6 @@ import interviewRoutes from './routes/interview.js';
 import violationRoutes from './routes/violations.js';
 import libraryRoutes from './routes/library.js';
 import adminRoutes from './routes/admin.js';
-
-// Load environment variables
-dotenv.config();
 
 // Initialize Express app
 const app = express();
