@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import LibraryQuestion from './src/models/LibraryQuestion.js';
 import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
@@ -318,4 +319,10 @@ function extractKeyPoints(answer) {
   return keywords.map(k => k.trim()).filter(k => k.length > 10);
 }
 
-seedDatabase();
+const __filename = fileURLToPath(import.meta.url);
+
+export { SAMPLE_QUESTIONS, extractKeyPoints, seedDatabase };
+
+if (process.argv[1] === __filename) {
+  seedDatabase();
+}

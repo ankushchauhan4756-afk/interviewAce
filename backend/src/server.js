@@ -1,13 +1,21 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
 import LibraryQuestion from './models/LibraryQuestion.js';
-import { createLibrarySeedDocuments } from './utils/librarySeedData.js';
+import { createLibrarySeedDocuments, getExpectedLibraryQuestionCount, LIBRARY_SEED_DATA } from './utils/librarySeedData.js';
 
-// Load environment variables from the appropriate file
+// Load environment variables from the appropriate file relative to this file
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env';
-dotenv.config({ path: envFile });
+const envPath = path.resolve(__dirname, '..', envFile);
+const envResult = dotenv.config({ path: envPath });
+if (envResult.error) {
+  console.warn(`Warning: could not load environment file at ${envPath}. ${envResult.error.message}`);
+}
 
 // Import routes
 import authRoutes from './routes/auth.js';
@@ -28,7 +36,9 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5000',
   process.env.FRONTEND_URL || 'https://interviewace.vercel.app',
-  'https://interviewace.vercel.app'
+  'https://interviewace.vercel.app',
+  'https://interviewace-frontend.onrender.com',
+  'https://interviewace-1-5zo7.onrender.com'
 ];
 
 app.use(cors({
@@ -58,11 +68,26 @@ app.get('/api/health', (req, res) => {
 const startApp = async () => {
   await connectDB();
 
-  const libraryCount = await LibraryQuestion.countDocuments();
-  if (libraryCount === 0) {
-    const libraryDocs = createLibrarySeedDocuments();
+  const existingCourses = await LibraryQuestion.distinct('course');
+  const allCourses = Object.keys(LIBRARY_SEED_DATA);
+  const coursesToSeed = [];
+
+  for (const course of allCourses) {
+    const expectedCount = getExpectedLibraryQuestionCount(course);
+    const currentCount = await LibraryQuestion.countDocuments({ course });
+
+    if (currentCount < expectedCount) {
+      coursesToSeed.push(course);
+    }
+  }
+
+  if (coursesToSeed.length > 0) {
+    await LibraryQuestion.deleteMany({ course: { $in: coursesToSeed } });
+    const libraryDocs = createLibrarySeedDocuments(coursesToSeed);
     await LibraryQuestion.insertMany(libraryDocs);
-    console.log(`✅ Seeded ${libraryDocs.length} library questions on first startup.`);
+    console.log(`✅ Seeded ${libraryDocs.length} library questions for categories: ${coursesToSeed.join(', ')}.`);
+  } else {
+    console.log('✅ Library data already contains all expected categories. No seeding required.');
   }
 };
 

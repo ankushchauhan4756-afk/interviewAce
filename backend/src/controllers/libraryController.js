@@ -92,7 +92,7 @@ export const getQuestions = async (req, res) => {
     const questions = await LibraryQuestion.find(filter)
       .skip(skip)
       .limit(parseInt(limit))
-      .select('question difficulty tags keyPoints isImportant _id');
+      .select('course topic question answer difficulty tags keyPoints isImportant views createdAt _id');
 
     const total = await LibraryQuestion.countDocuments(filter);
 
