@@ -218,7 +218,17 @@ router.post('/seed', verifyAdmin, async (req, res) => {
           { q: 'Rate limiting', a: 'Limit requests per time period. Prevent abuse, protect from DDoS attacks.' },
           { q: 'Authentication methods', a: 'username/password, OAuth, JWT, session-based. Choose based on security needs.' },
           { q: 'Authorization systems', a: 'Role-based (RBAC), attribute-based (ABAC). Control resource access.' },
-          { q: 'API pagination', a: 'Limit results: limit, offset or cursor-based. Improve performance with large datasets.' }
+          { q: 'API pagination', a: 'Limit results: limit, offset or cursor-based. Improve performance with large datasets.' },
+          { q: 'Database optimization', a: 'Indexing, query optimization, denormalization. Faster queries, reduced load.' },
+          { q: 'CDN usage', a: 'Content Delivery Network. Cache static assets globally. Faster downloads, reduced latency.' },
+          { q: 'Message queues', a: 'Async task processing: RabbitMQ, Apache Kafka. Decouple services, improve reliability.' },
+          { q: 'Service discovery', a: 'Services find other services dynamically. Consul, Eureka. Handle service location.' },
+          { q: 'API versioning', a: 'Maintain backward compatibility. URL versioning (/v1, /v2) or header-based. Plan ahead.' },
+          { q: 'Rate limiting strategies', a: 'Token bucket, sliding window, fixed window. Different algorithms for different needs.' },
+          { q: 'Vertical scaling limits', a: 'Single machine has physical limits. Expensive, harder to scale beyond limits.' },
+          { q: 'Horizontal scaling benefits', a: 'Add more machines incrementally. Better resilience, easier to scale.' },
+          { q: 'Single point of failure', a: 'One critical component failure breaks system. Use redundancy, failover mechanisms.' },
+          { q: 'Fault tolerance design', a: 'System continues operating despite failures. Replication, failover, redundancy.' }
         ],
         'DevOps': [
           { q: 'What is DevOps?', a: 'Combine development and operations. CI/CD, automation, collaboration. Faster releases.' },
@@ -235,9 +245,111 @@ router.post('/seed', verifyAdmin, async (req, res) => {
           { q: 'CI/CD pipelines', a: 'Continuous Integration: test on commit. Continuous Deployment: auto-deploy on success.' },
           { q: 'Git workflows', a: 'Main, develop, feature branches. Pull requests for code review. Merge strategies.' },
           { q: 'Infrastructure as Code', a: 'Terraform, CloudFormation define infrastructure. Version controlled, reproducible.' },
-          { q: 'Cloud platforms', a: 'AWS, GCP, Azure. Compute, storage, databases, networking services.' }
+          { q: 'Cloud platforms', a: 'AWS, GCP, Azure. Compute, storage, databases, networking services.' },
+          { q: 'Container registry', a: 'Docker Hub, AWS ECR, Google GCR, Azure ACR. Store and manage container images.' },
+          { q: 'Deployment pipeline', a: 'Build → Test → Staging → Production. Automated stages, quality gates.' },
+          { q: 'Rollback strategies', a: 'Revert to previous version on failure. Blue-green enables instant rollback.' },
+          { q: 'Monitoring tools', a: 'Prometheus, Grafana, ELK stack. Real-time metrics, dashboards, alerts.' },
+          { q: 'Log aggregation', a: 'Centralized logging from multiple services. ELK, Splunk, CloudWatch.' },
+          { q: 'Health checks', a: 'Regular endpoint checks. Auto-restart unhealthy containers/servers.' },
+          { q: 'Secrets management', a: 'Store sensitive data: passwords, API keys. HashiCorp Vault, AWS Secrets Manager.' },
+          { q: 'Configuration management', a: 'Ansible, Chef, Puppet. Version-controlled, repeatable infrastructure changes.' },
+          { q: 'IaC benefits', a: 'Reproducibility, version control, faster provisioning, disaster recovery.' },
+          { q: 'Zero-downtime deployment', a: 'Deploy without service interruption. Load balancing, health checks, rolling updates.' }
+        ]
+      },
+      'DSA': {
+        'Algorithms': [
+          { q: 'What is Big O notation?', a: 'Describes algorithm time/space complexity. O(1), O(n), O(n²), O(log n), O(n log n) common.' },
+          { q: 'Time vs space complexity', a: 'Time: how many operations. Space: how much memory. Both important for optimization.' },
+          { q: 'Sorting algorithms', a: 'Bubble, selection, insertion, merge, quick, heap. Different trade-offs: time, space, stability.' },
+          { q: 'Merge sort explanation', a: 'Divide and conquer. O(n log n) time. Stable, predictable. Requires extra space.' },
+          { q: 'Quick sort algorithm', a: 'Partition-based. Average O(n log n), worst O(n²). In-place, fast in practice.' },
+          { q: 'Binary search', a: 'O(log n) on sorted array. Compare middle element,divide search space in half.' },
+          { q: 'Linear search', a: 'O(n) complexity. Simple but slow for large datasets. Used when unsorted.' },
+          { q: 'DFS vs BFS', a: 'DFS: depth-first, uses stack/recursion. BFS: breadth-first, uses queue. Different use cases.' },
+          { q: 'Recursion basics', a: 'Function calling itself. Base case prevents infinite loop. Common in tree/graph algorithms.' },
+          { q: 'Dynamic programming', a: 'Solve overlapping subproblems. Memoization (top-down) or tabulation (bottom-up).' },
+          { q: 'Greedy algorithms', a: 'Local optimal choice at each step. Works for some problems: coin change with certain denominations.' },
+          { q: 'Backtracking algorithm', a: 'Explore all possibilities, abandon unpromising branches. N-queens, sudoku solver.' },
+          { q: 'Dijkstra algorithm', a: 'Shortest path in weighted graph. Greedy approach, works with non-negative weights.' },
+          { q: 'Floyd-Warshall algorithm', a: 'All-pairs shortest path. O(n³) time. Works with negative weights.' },
+          { q: 'Topological sort', a: 'Linear ordering of DAG vertices. For dependency resolution, task scheduling.' }
+        ],
+        'Data Structures': [
+          { q: 'What is array?', a: 'Ordered collection of elements. Fixed size, indexed access O(1), insertion O(n).' },
+          { q: 'What is linked list?', a: 'Sequential elements with pointers. Dynamic size, O(1) insertion, O(n) access.' },
+          { q: 'Stack data structure', a: 'LIFO (Last In First Out). Push, pop, peek. Used for recursion, undo, expression evaluation.' },
+          { q: 'Queue data structure', a: 'FIFO (First In First Out). Enqueue, dequeue. Used for BFS, scheduling, buffering.' },
+          { q: 'Binary search tree', a: 'Ordered tree. Left < parent < right. O(log n) search average, O(n) worst.' },
+          { q: 'Hash table/map', a: 'Key-value pairs. O(1) average lookup. Collisions handled by chaining or probing.' },
+          { q: 'Heap data structure', a: 'Specialized tree. Min-heap, max-heap. Used for priority queues, heapsort.' },
+          { q: 'Graph representation', a: 'Adjacency matrix or list. Matrix: O(n²) space, fast lookup. List: O(n+m) space.' },
+          { q: 'Trie data structure', a: 'Prefix tree for strings. Efficient string search, autocomplete. O(m) per lookup.' },
+          { q: 'Union-Find (Disjoint Set)', a: 'Track connectivity, connected components. Union by rank, path compression optimizations.' },
+          { q: 'Set data structure', a: 'Unique elements. No duplicates. Hash-based or tree-based implementations.' },
+          { q: 'String operations', a: 'Substring search (KMP, Rabin-Karp), pattern matching, string manipulation.' },
+          { q: 'Tree traversals', a: 'Inorder, preorder, postorder (DFS). Level-order (BFS). Different order outputs.' },
+          { q: 'Balanced trees', a: 'AVL, Red-Black trees. Self-balancing, O(log n) operations. Complex but predictable performance.' },
+          { q: 'Segment tree', a: 'Range query data structure. Build O(n), query O(log n), update O(log n).' }
+        ]
+      },
+      'Java': {
+        'Collections': [
+          { q: 'What are Java collections?', a: 'Framework of interfaces and classes for data structures. ArrayList, HashMap, HashSet.' },
+          { q: 'List interface', a: 'Ordered collection. ArrayList (dynamic array), LinkedList (doubly linked). Allows duplicates.' },
+          { q: 'Set interface', a: 'No duplicates. HashSet (unordered), TreeSet (sorted), LinkedHashSet (order preserved).' },
+          { q: 'Map interface', a: 'Key-value pairs. HashMap (unordered), TreeMap (sorted), LinkedHashMap (order preserved).' },
+          { q: 'Iterator vs forEach', a: 'Iterator: explicit control, can remove during iteration. forEach: cleaner syntax, cannot modify.' },
+          { q: 'Comparable vs Comparator', a: 'Comparable: natural order, implements compareTo(). Comparator: custom order, separate class.' },
+          { q: 'HashMap collisions', a: 'Multiple keys hash to same value. Separate chaining (linked list) or open addressing.' },
+          { q: 'ArrayList vs LinkedList', a: 'ArrayList: O(1) access, O(n) insertion. LinkedList: O(n) access, O(1) insertion.' },
+          { q: 'Thread-safe collections', a: 'Vector (legacy), ConcurrentHashMap, Collections.synchronizedList(). For multi-threaded access.' },
+          { q: 'Stream API', a: 'Functional programming style. filter, map, reduce operations on collections. Lazy evaluation.' },
+          { q: 'Lambda expressions', a: '(args) -> expression syntax. Define anonymous functions. Used with functional interfaces.' },
+          { q: 'Queue interface', a: 'FIFO operations. PriorityQueue (sorted), Deque (double-ended). add, remove, poll, peek.' },
+          { q: 'Collection sorting', a: 'Collections.sort() or stream.sorted(). Custom Comparator or natural order.' },
+          { q: 'Equals and hashCode', a: 'Override both for collections. hashCode() consistent with equals(). Critical for HashMap, HashSet.' },
+          { q: 'Unmodifiable collections', a: 'Collections.unmodifiableList(), unmodifiableMap(). Throws UnsupportedOperationException on modification.' }
+        ],
+        'Multithreading': [
+          { q: 'What is a thread?', a: 'Lightweight process. Shares memory, concurrent execution. reduce latency, improve responsiveness.' },
+          { q: 'Creating threads', a: 'Extend Thread or implement Runnable. start() calls run(). Preferred: implement Runnable.' },
+          { q: 'Thread lifecycle', a: 'New → Runnable → Running → Blocked → Terminated. Managed by JVM scheduler.' },
+          { q: 'Synchronization', a: 'synchronized keyword. Ensures only one thread accesses critical section. Prevents race conditions.' },
+          { q: 'Volatile keyword', a: 'Ensures visibility of changes across threads. No caching, always read from memory.' },
+          { q: 'Thread communication', a: 'wait(), notify(), notifyAll() for coordination. Object-level locks.' },
+          { q: 'Deadlock prevention', a: 'Acquire locks in order, timeout on waits, use tryLock(). Avoid circular dependencies.' },
+          { q: 'Executor framework', a: 'Manage thread pools efficiently. ExecutorService with fixed/cached/scheduled pools.' },
+          { q: 'Callable and Future', a: 'Callable: returns value, throws checked exceptions. Future: get result, isDone(), cancel().' },
+          { q: 'ConcurrentModificationException', a: 'Modifying collection while iterating. Use Iterator, concurrent collections, or copy.' },
+          { q: 'ThreadPool best practices', a: 'Appropriate size based on workload. Monitor queue, thread count, rejection policy.' },
+          { q: 'Lock interface', a: 'java.util.concurrent.locks. More flexible than synchronized. tryLock, timeout, multiple conditions.' },
+          { q: 'ReentrantLock', a: 'Re-entrant lock implementation. Same thread can acquire multiple times. Supports fairness.' },
+          { q: 'Atomic classes', a: 'AtomicInteger, AtomicLong. Atomic operations without synchronization. Lower contention.' },
+          { q: 'CountDownLatch', a: 'Synchronization aid. Threads wait for count to reach zero. One-time use.' }
+        ]
+      },
+      'Python': {
+        'Basics': [
+          { q: 'Python data types', a: 'int, float, str, bool, list, tuple, dict, set. Dynamic typing, flexible.' },
+          { q: 'List vs Tuple', a: 'List: mutable (modify after creation). Tuple: immutable. Use tuple for fixed data.' },
+          { q: 'Dictionary operations', a: 'Key-value pairs. d[key], d.get(key), d.keys(), d.values(), d.items().' },
+          { q: 'String operations', a: 'Immutable. Concatenation, slicing, formatting with f-strings. Common methods: split, join, replace.' },
+          { q: 'List comprehension', a: '[x for x in iterable if condition]. Concise way to create lists from other iterables.' },
+          { q: 'Lambda functions', a: 'lambda args: expression. Anonymous functions. Used with map, filter, sorted.' },
+          { q: 'Map, filter, reduce', a: 'map: apply function to each element. filter: select elements. reduce: accumulate.' },
+          { q: '*args and **kwargs', a: '*args: variable positional arguments (tuple). **kwargs: variable keyword arguments (dict).' },
+          { q: 'Python decorators', a: '@functools wraps function. Modify behavior. Common: @property, @staticmethod, @classmethod.' },
+          { q: 'Context managers', a: 'with statement. Ensure resource cleanup. __enter__ and __exit__ methods.' },
+          { q: 'Generators and yield', a: 'Generator function yields values lazily. Memory efficient for large datasets.' },
+          { q: 'Exception handling', a: 'try/except/finally/else. Catch specific exceptions, custom exceptions, ensure cleanup.' },
+          { q: 'Module and package', a: 'Module: Python file. Package: directory with __init__.py. Organize code into namespaces.' },
+          { q: 'Virtual environment', a: 'Isolated Python environment. virtualenv, venv. Install packages per project, avoid conflicts.' },
+          { q: 'PEP 8 style guide', a: '4-space indentation, lowercase with underscores, max 79 characters per line. Python conventions.' }
         ]
       }
+    }
     };
 
     let totalAdded = 0;
