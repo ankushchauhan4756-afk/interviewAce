@@ -2,19 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Eye, Bookmark, Share2 } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
-import axios from 'axios';
+import api from '../utils/api';
 import './QuestionDetailPage.css';
 
 const QuestionDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user } = React.useContext(AuthContext);
+  const { user, loading: authLoading } = React.useContext(AuthContext);
   const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user) {
       navigate('/login');
       return;
@@ -23,18 +24,12 @@ const QuestionDetailPage = () => {
     fetchQuestion();
     const bookmarks = JSON.parse(localStorage.getItem('bookmarkedQuestions') || '[]');
     setIsBookmarked(bookmarks.includes(id));
-  }, [id]);
+  }, [id, authLoading, user]);
 
   const fetchQuestion = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
-      const client = axios.create({
-        baseURL: import.meta.env.VITE_API_BASE_URL || 'https://interviewace-1-5zo7.onrender.com/api',
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      const response = await client.get(`/library/question/${id}`);
+      const response = await api.get(`/library/question/${id}`);
       setQuestion(response.data.question);
     } catch (err) {
       setError('Failed to load question. Please try again.');

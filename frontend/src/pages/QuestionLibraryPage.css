@@ -215,18 +215,82 @@
 
 @media (max-width: 768px) {
   .question-library-page {
-    padding: 1rem;
+    padding: 1rem 0.5rem;
+    min-height: calc(100vh - 120px);
+  }
+
+  .library-header {
+    margin-bottom: 2rem;
+    text-align: left;
   }
 
   .library-header h1 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .library-header p {
+    font-size: 1rem;
+  }
+
+  .library-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .courses-container h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
   }
 
   .courses-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  .library-stats {
-    grid-template-columns: 1fr;
+  .course-card {
+    margin-bottom: 0;
+  }
+
+  .course-header {
+    padding: 1rem;
+  }
+
+  .course-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .course-info {
+    padding: 0.75rem 1rem;
+  }
+
+  .difficulty-breakdown {
+    padding: 0.75rem 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.25rem;
+  }
+
+  .difficulty-item {
+    padding: 0.25rem;
+    font-size: 0.75rem;
+  }
+
+  .difficulty-item .count {
+    font-size: 0.9rem;
+  }
+
+  .explore-btn {
+    margin: 0.75rem 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
 }

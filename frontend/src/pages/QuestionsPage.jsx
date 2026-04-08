@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronDown, ChevronUp, Search, Filter } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
-import axios from 'axios';
+import api from '../utils/api';
 import './QuestionsPage.css';
 
 const QuestionsPage = () => {
   const { course, topic } = useParams();
   const navigate = useNavigate();
-  const { user } = React.useContext(AuthContext);
+  const { user, loading: authLoading } = React.useContext(AuthContext);
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -22,24 +22,19 @@ const QuestionsPage = () => {
   const totalPages = Math.ceil(totalQuestions / LIMIT);
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user) {
       navigate('/login');
       return;
     }
 
     fetchQuestions();
-  }, [course, topic, page, difficulty, search]);
+  }, [course, topic, page, difficulty, search, authLoading, user]);
 
   const fetchQuestions = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
-      const client = axios.create({
-        baseURL: import.meta.env.VITE_API_BASE_URL || 'https://interviewace-1-5zo7.onrender.com/api',
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      const response = await client.get('/library/questions', {
+      const response = await api.get('/library/questions', {
         params: {
           course,
           topic,

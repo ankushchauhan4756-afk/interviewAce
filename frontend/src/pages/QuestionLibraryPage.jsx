@@ -1,25 +1,21 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import axios from 'axios';
+import api from '../utils/api';
 import { BookOpen, ArrowRight } from 'lucide-react';
 import './QuestionLibraryPage.css';
 
 function QuestionLibraryPage() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, loading: authLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [statistics, setStatistics] = useState({});
 
-  const api = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL || 'https://interviewace-1-5zo7.onrender.com/api',
-    headers: {
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    }
-  });
+  // use shared API client with auth headers and base URL configured
 
   useEffect(() => {
+    if (authLoading) return;
     if (!isAuthenticated) {
       navigate('/login');
       return;
@@ -27,7 +23,7 @@ function QuestionLibraryPage() {
 
     fetchCourses();
     fetchStatistics();
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, authLoading, navigate]);
 
   const fetchCourses = async () => {
     try {

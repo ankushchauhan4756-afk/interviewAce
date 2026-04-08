@@ -190,3 +190,16 @@ select:focus {
   box-shadow: var(--shadow-md);
   transform: translateY(-1px);
 }
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  /* Reduce excessive vertical spacing */
+  .main-content > * + * {
+    margin-top: 1.5rem;
+  }
+
+  /* Optimize for mobile reading */
+  p, li {
+    line-height: 1.6;
+  }
+}

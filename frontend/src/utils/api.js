@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://interviewace-1-5zo7.onrender.com/api';
+const DEFAULT_API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://interviewace-1-5zo7.onrender.com/api';
+const API_BASE_URL = DEFAULT_API_BASE_URL;
 
 // Create axios instance
 const api = axios.create({
@@ -12,7 +13,7 @@ const api = axios.create({
 
 // Add token to requests
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('authToken');
+  const token = localStorage.getItem('authToken') || localStorage.getItem('token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

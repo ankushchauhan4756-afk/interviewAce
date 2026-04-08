@@ -16,6 +16,6 @@
 /* Responsive design */
 @media (max-width: 768px) {
   .main-content {
-    padding: 1.5rem;
+    padding: 1rem 0.75rem;
   }
 }

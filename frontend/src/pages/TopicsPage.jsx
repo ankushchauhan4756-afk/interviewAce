@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
-import axios from 'axios';
+import api from '../utils/api';
 import './TopicsPage.css';
 
 const TopicsPage = () => {
   const { course } = useParams();
   const navigate = useNavigate();
-  const { user } = React.useContext(AuthContext);
+  const { user, loading: authLoading } = React.useContext(AuthContext);
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -26,24 +26,19 @@ const TopicsPage = () => {
 
   useEffect(() => {
     // Auth check
+    if (authLoading) return;
     if (!user) {
       navigate('/login');
       return;
     }
 
     fetchTopics();
-  }, [course]);
+  }, [course, authLoading, user]);
 
   const fetchTopics = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
-      const client = axios.create({
-        baseURL: import.meta.env.VITE_API_BASE_URL || 'https://interviewace-1-5zo7.onrender.com/api',
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      const response = await client.get('/library/topics', {
+      const response = await api.get('/library/topics', {
         params: { course },
       });
 

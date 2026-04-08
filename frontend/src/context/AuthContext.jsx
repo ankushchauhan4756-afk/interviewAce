@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await authAPI.login({ email, password });
       localStorage.setItem('authToken', response.data.token);
+      localStorage.setItem('token', response.data.token);
       setIsAuthenticated(true);
       // Fetch user profile after login
       await checkAuth();
@@ -44,6 +45,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       setIsAuthenticated(false);
       localStorage.removeItem('authToken');
+      localStorage.removeItem('token');
       throw error;
     }
   };
@@ -52,6 +54,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await authAPI.register({ name, email, password });
       localStorage.setItem('authToken', response.data.token);
+      localStorage.setItem('token', response.data.token);
       setIsAuthenticated(true);
       // Fetch user profile after registration
       await checkAuth();
@@ -59,12 +62,14 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       setIsAuthenticated(false);
       localStorage.removeItem('authToken');
+      localStorage.removeItem('token');
       throw error;
     }
   };
 
   const logout = () => {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('token');
     setUser(null);
     setIsAuthenticated(false);
   };

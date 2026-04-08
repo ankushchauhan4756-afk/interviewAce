@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { Menu, X, LogOut } from 'lucide-react';
 import { useState } from 'react';
@@ -16,15 +16,27 @@ function Navbar() {
     setIsOpen(false);
   };
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isOpen && !event.target.closest('.navbar')) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
+
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <Link to="/" className="nav-logo">
+        <Link to="/" className="nav-logo" onClick={() => setIsOpen(false)}>
           <img src="/logo.svg" alt="InterviewAce" width="40" height="40" />
           <span>InterviewAce</span>
         </Link>
 
-        <button className="menu-icon" onClick={() => setIsOpen(!isOpen)}>
+        <button className="menu-icon" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
