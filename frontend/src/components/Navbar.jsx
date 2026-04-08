@@ -19,7 +19,7 @@ function Navbar() {
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isOpen && !event.target.closest('.navbar')) {
+      if (isOpen && !event.target.closest('.nav-menu') && !event.target.closest('.menu-icon')) {
         setIsOpen(false);
       }
     };

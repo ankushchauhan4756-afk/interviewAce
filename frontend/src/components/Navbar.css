@@ -165,30 +165,47 @@
 
   .nav-menu {
     position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0;
+    right: -300px;
+    width: 280px;
+    height: 100vh;
     flex-direction: column;
     gap: 0;
-    background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(20px);
-    border-top: 1px solid var(--border-color);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-    opacity: 0;
-    z-index: 99;
+    background: var(--bg-secondary);
+    border-left: 1px solid var(--border-color);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    padding-top: 70px;
+    overflow-y: auto;
   }
 
   .nav-menu.active {
-    max-height: calc(100vh - 70px);
+    right: 0;
+  }
+
+  /* Overlay when menu is open */
+  .nav-menu::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .nav-menu.active::before {
     opacity: 1;
+    pointer-events: auto;
   }
 
   .nav-item {
     width: 100%;
-    padding: 0;
     border-bottom: 1px solid rgba(71, 85, 105, 0.3);
   }
 
@@ -202,6 +219,7 @@
     color: var(--text-secondary);
     font-size: 1rem;
     justify-content: flex-start;
+    border-radius: 0;
   }
 
   .nav-link:hover {
