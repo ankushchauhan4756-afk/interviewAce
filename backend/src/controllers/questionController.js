@@ -11,7 +11,7 @@ export const getAll = async (req, res) => {
     }
 
     // Filter by difficulty
-    if (difficulty) {
+    if (difficulty && difficulty !== 'All') {
       filter.difficulty = difficulty;
     }
 

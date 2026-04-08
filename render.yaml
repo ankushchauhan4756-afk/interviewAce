@@ -8,7 +8,7 @@ services:
     startCommand: npm start
     envVars:
       - key: MONGODB_URI
-        value: mongodb+srv://arunthak56388_db_user:Ankush4756@cluster01.mjpepw2.mongodb.net/sample_mflix?retryWrites=true&w=majority
+        value: mongodb+srv://arunthak56388_db_user:Ankush4756@cluster01.mjpepw2.mongodb.net/interviewace?retryWrites=true&w=majority
       - key: JWT_SECRET
         value: InterviewAce2024SecretKey123!@
       - key: ADMIN_SECRET
