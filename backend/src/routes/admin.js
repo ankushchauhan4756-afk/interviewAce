@@ -348,6 +348,38 @@ router.post('/seed', verifyAdmin, async (req, res) => {
           { q: 'Virtual environment', a: 'Isolated Python environment. virtualenv, venv. Install packages per project, avoid conflicts.' },
           { q: 'PEP 8 style guide', a: '4-space indentation, lowercase with underscores, max 79 characters per line. Python conventions.' }
         ]
+      },
+      'Data Analyst': {
+        'SQL': [
+          { q: 'What is a JOIN in SQL?', a: 'A JOIN combines rows from two or more tables based on a related column between them.' },
+          { q: 'Difference between INNER JOIN and LEFT JOIN', a: 'INNER JOIN returns matching rows only, LEFT JOIN returns all rows from left table and matching rows from right.' },
+          { q: 'What is GROUP BY?', a: 'GROUP BY aggregates rows with the same values into summary rows, often used with COUNT, SUM, AVG.' },
+          { q: 'Explain HAVING clause', a: 'HAVING filters groups after aggregation, while WHERE filters rows before aggregation.' },
+          { q: 'What is normalization?', a: 'Normalization organizes data to reduce redundancy and dependency, often through normal forms.' }
+        ],
+        'Data Visualization': [
+          { q: 'What is a dashboard?', a: 'A dashboard is a visual display of key metrics and trends used for quick data insights.' },
+          { q: 'Common chart types', a: 'Bar, line, pie, scatter, histogram, boxplot. Each serves different analysis needs.' },
+          { q: 'What is KPI?', a: 'Key Performance Indicator, a measurable value that demonstrates how effectively a company achieves key objectives.' },
+          { q: 'How do you choose a chart type?', a: 'Choose based on data type and message: comparisons use bars, trends use lines, distributions use histograms.' },
+          { q: 'What is dashboard storytelling?', a: 'Combining visuals to deliver a narrative from data for better decision making.' }
+        ]
+      },
+      'System Design': {
+        'Basics': [
+          { q: 'What is system availability?', a: 'Availability is the proportion of time a system is functional and accessible when needed.' },
+          { q: 'What is fault tolerance?', a: 'Fault tolerance allows a system to continue operating despite component failures.' },
+          { q: 'Explain load balancing', a: 'Distribute incoming network traffic across multiple servers to improve performance and reliability.' },
+          { q: 'What is caching?', a: 'Caching stores frequently accessed data closer to the user to reduce latency and load.' },
+          { q: 'What is data sharding?', a: 'Sharding splits a database into smaller pieces across servers to scale horizontally.' }
+        ],
+        'Advanced': [
+          { q: 'What is eventual consistency?', a: 'Eventual consistency means updates propagate to all nodes over time, not instantly.' },
+          { q: 'Explain CAP theorem', a: 'CAP theorem states distributed systems can guarantee only two of Consistency, Availability, and Partition tolerance at once.' },
+          { q: 'What is microservices architecture?', a: 'Microservices break an app into small, independent services that communicate over APIs.' },
+          { q: 'What is service discovery?', a: 'Service discovery enables services to find each other dynamically in distributed systems.' },
+          { q: 'What is a message queue?', a: 'A message queue enables asynchronous communication between services, improving reliability and decoupling.' }
+        ]
       }
     }
     };
